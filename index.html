@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bargophone | عالم الهواتف الذكية</title>
+    <style>
+        /* تعريف الألوان كمتغيرات ليسهل تغييرها لاحقاً */
+        :root {
+            --primary-blue: #243b55; /* أزرق داكن احترافي */
+            --accent-blue: #3a6186;  /* أزرق فاتح قليلاً */
+            --bg-gray: #f0f2f5;      /* رمادي فاتح للخلفية */
+            --text-gray: #4a4a4a;    /* رمادي غامق للنصوص */
+            --pure-white: #ffffff;   /* أبيض ناصع */
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-gray);
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* شريط التنقل العلوي */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; }
+
+        nav a {
+            color: var(--pure-white);
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: #cbd5e0; }
+
+        /* الجزء الترحيبي (Hero Section) */
+        .hero {
+            background: linear-gradient(to left, var(--primary-blue), var(--accent-blue));
+            color: var(--pure-white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 { margin: 0; font-size: 3rem; letter-spacing: 1px; }
+        .hero p { font-size: 1.1rem; opacity: 0.8; max-width: 600px; margin: 15px auto; }
+
+        /* حاوية البطاقات */
+        .container {
+            max-width: 1200px;
+            margin: -40px auto 40px; /* تداخل بسيط مع الـ Hero للشكل الجمالي */
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* تصميم البطاقة الاحترافي */
+        .card {
+            background: var(--pure-white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e1e8ed;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--bg-gray);
+            padding-bottom: 10px;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .spec-label { font-weight: bold; color: var(--accent-blue); }
+
+        /* الأزرار */
+        .btn-details {
+            display: block;
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
+            text-align: center;
+            padding: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 25px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-details:hover { background-color: var(--accent-blue); }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #dde2e7; /* رمادي متوسط */
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Bargophone 📱</div>
+        <nav>
+            <a href="#">الرئيسية</a>
+            <a href="#">الماركات</a>
+            <a href="#">تواصل معنا</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Bargophone</h1>
+        <p>اكتشف أدق تفاصيل ومواصفات أحدث الهواتف الذكية بلمسة واحدة.</p>
+    </section>
+
+    <div class="container">
+        <div class="card">
+            <h3>Samsung S24 Ultra</h3>
+            <div class="spec-row">
+                <span class="spec-label">المعالج:</span>
+                <span>Snapdragon 8 Gen 3</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">الرام:</span>
+                <span>12 جيجابايت</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">التخزين:</span>
+                <span>256GB / 512GB</span>
+            </div>
+            <a href="#" class="btn-details">مشاهدة التفاصيل</a>
+        </div>
+
+        <div class="card">
+            <h3>iPhone 15 Pro</h3>
+            <div class="spec-row">
+                <span class="spec-label">المعالج:</span>
+                <span>A17 Pro Bionic</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">الرام:</span>
+                <span>8 جيجابايت</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">التخزين:</span>
+                <span>128GB / 256GB</span>
+            </div>
+            <a href="#" class="btn-details">مشاهدة التفاصيل</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Bargophone &copy; 2026 | صنع بكل شغف لمشروعك الأول</p>
+    </footer>
+
+</body>
+  </html>
+
