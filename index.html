@@ -1,223 +1,241 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bargophone | محرك بحث الهواتف</title>
-    <style>
-        :root {
-            --primary-blue: #243b55;
-            --accent-blue: #3a6186;
-            --light-gray: #f8f9fa;
-            --border-gray: #dee2e6;
-            --white: #ffffff;
-            --text-dark: #212529;
-        }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-gray);
-            color: var(--text-dark);
-        }
+<meta charset="UTF-8">
 
-        header {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 1rem 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .logo { font-size: 1.5rem; font-weight: bold; }
+<title>PhoneScope</title>
 
-        .search-filter-section {
-            background: var(--white);
-            padding: 20px 10%;
-            border-bottom: 1px solid var(--border-gray);
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+<style>
 
-        .search-box {
-            width: 100%;
-            max-width: 500px;
-            padding: 12px 20px;
-            border: 2px solid var(--border-gray);
-            border-radius: 25px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s;
-            margin-bottom: 20px;
-        }
+body{
 
-        .search-box:focus { border-color: var(--accent-blue); }
+font-family:Arial;
+margin:0;
+background:#f1f5f9;
 
-        .filter-bar {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+}
 
-        .filter-btn {
-            background: var(--light-gray);
-            border: 1px solid var(--border-gray);
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: var(--primary-blue);
-            transition: all 0.3s;
-        }
+header{
 
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--primary-blue);
-            color: var(--white);
-            border-color: var(--primary-blue);
-        }
+background:#0f172a;
+color:white;
+padding:15px;
+text-align:center;
+font-size:24px;
 
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
+}
 
-        /* تنسيق البطاقة */
-        .card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid var(--border-gray);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: block; /* مهم للجافا سكريبت */
-        }
+.search{
 
-        .card.hidden { display: none; }
+width:90%;
+max-width:500px;
+margin:20px auto;
+display:block;
+padding:12px;
+border-radius:25px;
+border:1px solid #ccc;
 
-        .card h3 { margin: 0 0 15px 0; color: var(--primary-blue); }
-        
-        .spec-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--light-gray);
-            font-size: 0.9rem;
-        }
+}
 
-        .brand-badge {
-            background: #e9ecef;
-            padding: 2px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--accent-blue);
-        }
+.container{
 
-        footer { text-align: center; padding: 30px; color: #888; }
-    </style>
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+padding:20px;
+
+}
+
+.card{
+
+background:white;
+padding:15px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+}
+
+img{
+
+width:100%;
+
+}
+
+button{
+
+background:#2563eb;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+.specs{
+
+display:none;
+margin-top:10px;
+font-size:14px;
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">Bargophone</div>
-        <nav style="font-size: 0.9rem;">الرئيسية | الماركات</nav>
-    </header>
+<header>
 
-    <div class="search-filter-section">
-        <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن هاتف...">
-        
-        <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterSelection('all')">الكل</button>
-            <button class="filter-btn" onclick="filterSelection('samsung')">Samsung</button>
-            <button class="filter-btn" onclick="filterSelection('apple')">Apple</button>
-            <button class="filter-btn" onclick="filterSelection('xiaomi')">Xiaomi</button>
-        </div>
-    </div>
+PhoneScope
 
-    <div class="container" id="phoneContainer">
-        <div class="card samsung">
-            <span class="brand-badge">Samsung</span>
-            <h3>Galaxy S24 Ultra</h3>
-            <div class="spec-item"><span>المعالج:</span> <strong>Snapdragon 8 Gen 3</strong></div>
-            <div class="spec-item"><span>البطارية:</span> <strong>5000 mAh</strong></div>
-        </div>
+</header>
 
-        <div class="card samsung">
-            <span class="brand-badge">Samsung</span>
-            <h3>Galaxy A55</h3>
-            <div class="spec-item"><span>المعالج:</span> <strong>Exynos 1480</strong></div>
-            <div class="spec-item"><span>البطارية:</span> <strong>5000 mAh</strong></div>
-        </div>
+<input class="search" id="search" placeholder="Search phone...">
 
-        <div class="card apple">
-            <span class="brand-badge">Apple</span>
-            <h3>iPhone 15 Pro</h3>
-            <div class="spec-item"><span>المعالج:</span> <strong>A17 Pro</strong></div>
-            <div class="spec-item"><span>البطارية:</span> <strong>3274 mAh</strong></div>
-        </div>
+<div class="container" id="phones">
 
-        <div class="card xiaomi">
-            <span class="brand-badge">Xiaomi</span>
-            <h3>Xiaomi 14</h3>
-            <div class="spec-item"><span>المعالج:</span> <strong>Snapdragon 8 Gen 3</strong></div>
-            <div class="spec-item"><span>البطارية:</span> <strong>4610 mAh</strong></div>
-        </div>
-    </div>
+</div>
 
-    <footer><p>Bargophone &copy; 2026</p></footer>
+<script>
 
-    <script>
-        // دالة البحث النصي
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('keyup', function() {
-            let filter = searchInput.value.toLowerCase();
-            let cards = document.querySelectorAll('.card');
-            
-            cards.forEach(card => {
-                let title = card.querySelector('h3').innerText.toLowerCase();
-                if(title.includes(filter)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        });
+let phones=[
 
-        // دالة التصفية حسب الشركة
-        function filterSelection(brand) {
-            let cards = document.querySelectorAll('.card');
-            let btns = document.querySelectorAll('.filter-btn');
-            
-            // تغيير لون الزر النشط
-            btns.forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.innerText.toLowerCase() === brand || (brand === 'all' && btn.innerText === 'الكل')) {
-                    btn.classList.add('active');
-                }
-            });
+{
 
-            // إخفاء وإظهار البطاقات
-            cards.forEach(card => {
-                if (brand === 'all') {
-                    card.classList.remove('hidden');
-                } else {
-                    if (card.classList.contains(brand)) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                }
-            });
-        }
-    </script>
+name:"Vivo X100 Pro",
+
+chip:"Dimensity 9300",
+
+ram:"16GB",
+
+battery:"5400mAh",
+
+camera:"50MP",
+
+img:"https://fdn2.gsmarena.com/vv/pics/vivo/vivo-x100-pro-1.jpg"
+
+},
+
+{
+
+name:"Samsung S24 Ultra",
+
+chip:"Snapdragon 8 Gen 3",
+
+ram:"12GB",
+
+battery:"5000mAh",
+
+camera:"200MP",
+
+img:"https://fdn2.gsmarena.com/vv/pics/samsung/galaxy-s24-ultra-1.jpg"
+
+},
+
+{
+
+name:"iPhone 15 Pro Max",
+
+chip:"A17 Pro",
+
+ram:"8GB",
+
+battery:"4441mAh",
+
+camera:"48MP",
+
+img:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-max-1.jpg"
+
+}
+
+]
+
+function showPhones(list){
+
+let container=document.getElementById("phones")
+
+container.innerHTML=""
+
+list.forEach(phone=>{
+
+container.innerHTML+=`
+
+<div class="card">
+
+<img src="${phone.img}">
+
+<h3>${phone.name}</h3>
+
+<p>${phone.chip}</p>
+
+<p>${phone.ram}</p>
+
+<p>${phone.battery}</p>
+
+<button onclick="toggleSpecs(this)">
+View specs
+</button>
+
+<div class="specs">
+
+Camera: ${phone.camera}<br>
+
+Battery: ${phone.battery}<br>
+
+RAM: ${phone.ram}
+
+</div>
+
+</div>
+
+`
+
+})
+
+}
+
+function toggleSpecs(btn){
+
+let specs=btn.nextElementSibling
+
+specs.style.display=
+specs.style.display=="block"
+?"none":"block"
+
+}
+
+document
+.getElementById("search")
+.addEventListener("input",e=>{
+
+let text=e.target.value.toLowerCase()
+
+let filtered=phones.filter(p=>
+p.name.toLowerCase().includes(text)
+)
+
+showPhones(filtered)
+
+})
+
+showPhones(phones)
+
+</script>
+
 </body>
+
 </html>
