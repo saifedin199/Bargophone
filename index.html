@@ -1,240 +1,24 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
 
-<meta charset="UTF-8">
+<title>Phone Specs</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>PhoneScope</title>
-
-<style>
-
-body{
-
-font-family:Arial;
-margin:0;
-background:#f1f5f9;
-
-}
-
-header{
-
-background:#0f172a;
-color:white;
-padding:15px;
-text-align:center;
-font-size:24px;
-
-}
-
-.search{
-
-width:90%;
-max-width:500px;
-margin:20px auto;
-display:block;
-padding:12px;
-border-radius:25px;
-border:1px solid #ccc;
-
-}
-
-.container{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
-padding:20px;
-
-}
-
-.card{
-
-background:white;
-padding:15px;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-transition:0.3s;
-
-}
-
-.card:hover{
-
-transform:translateY(-5px);
-
-}
-
-img{
-
-width:100%;
-
-}
-
-button{
-
-background:#2563eb;
-color:white;
-border:none;
-padding:10px;
-width:100%;
-border-radius:8px;
-cursor:pointer;
-
-}
-
-.specs{
-
-display:none;
-margin-top:10px;
-font-size:14px;
-
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<header>
+<h1>Phone Database</h1>
 
-PhoneScope
+<div id="phones"></div>
 
-</header>
+<script src="phones.js"></script>
 
-<input class="search" id="search" placeholder="Search phone...">
-
-<div class="container" id="phones">
-
-</div>
-
-<script>
-
-let phones=[
-
-{
-
-name:"Vivo X100 Pro",
-
-chip:"Dimensity 9300",
-
-ram:"16GB",
-
-battery:"5400mAh",
-
-camera:"50MP",
-
-img:"https://fdn2.gsmarena.com/vv/pics/vivo/vivo-x100-pro-1.jpg"
-
-},
-
-{
-
-name:"Samsung S24 Ultra",
-
-chip:"Snapdragon 8 Gen 3",
-
-ram:"12GB",
-
-battery:"5000mAh",
-
-camera:"200MP",
-
-img:"https://fdn2.gsmarena.com/vv/pics/samsung/galaxy-s24-ultra-1.jpg"
-
-},
-
-{
-
-name:"iPhone 15 Pro Max",
-
-chip:"A17 Pro",
-
-ram:"8GB",
-
-battery:"4441mAh",
-
-camera:"48MP",
-
-img:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-max-1.jpg"
-
-}
-
-]
-
-function showPhones(list){
-
-let container=document.getElementById("phones")
-
-container.innerHTML=""
-
-list.forEach(phone=>{
-
-container.innerHTML+=`
-
-<div class="card">
-
-<img src="${phone.img}">
-
-<h3>${phone.name}</h3>
-
-<p>${phone.chip}</p>
-
-<p>${phone.ram}</p>
-
-<p>${phone.battery}</p>
-
-<button onclick="toggleSpecs(this)">
-View specs
-</button>
-
-<div class="specs">
-
-Camera: ${phone.camera}<br>
-
-Battery: ${phone.battery}<br>
-
-RAM: ${phone.ram}
-
-</div>
-
-</div>
-
-`
-
-})
-
-}
-
-function toggleSpecs(btn){
-
-let specs=btn.nextElementSibling
-
-specs.style.display=
-specs.style.display=="block"
-?"none":"block"
-
-}
-
-document
-.getElementById("search")
-.addEventListener("input",e=>{
-
-let text=e.target.value.toLowerCase()
-
-let filtered=phones.filter(p=>
-p.name.toLowerCase().includes(text)
-)
-
-showPhones(filtered)
-
-})
-
-showPhones(phones)
-
-</script>
+<script src="script.js"></script>
 
 </body>
 
